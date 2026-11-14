@@ -18,9 +18,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, sparplane, 200, 0)
 })
-info.onScore(7, function () {
-    game.gameOver(true)
-})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (info.life() <= 2) {
         projectile2 = sprites.createProjectileFromSprite(img`
@@ -181,7 +178,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             `)
     } else {
         scene.cameraShake(6, 500)
-        info.changeLifeBy(1)
+        info.changeLifeBy(-1)
         scene.setBackgroundImage(img`
             2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
             2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
@@ -486,6 +483,8 @@ spacs.sayText("Stern2")
 spacs.setPosition(57, 20)
 spacs.setVelocity(4, 0)
 spacs.setBounceOnWall(true)
+game.setGameOverScoringType(game.ScoringType.HighScore)
+game.setGameOverMessage(true, "Die Galaxie gehört dir( ;")
 game.onUpdateInterval(1000, function () {
     bogey = sprites.create(img`
         . . . . . . . . . . . . . . . . 
